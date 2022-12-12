@@ -21,7 +21,9 @@ import com.sab.microservices.pojo.Users;
 
 @Service
 public class UserServiceImpl implements UserService {
-	private final String PATH = "/Users/vickyverma/Downloads";
+	//for mac users we can define path like this
+	//private final String PATH = "/Users/vickyverma/Downloads";
+	private final String PATH = "C://Files";
 	private final String URL = "https://jsonplaceholder.typicode.com";
 	RestTemplate restTemplate = new RestTemplate();
 	public Map<String, List<String>> segragaate(List<String> values) {
@@ -50,10 +52,11 @@ public class UserServiceImpl implements UserService {
 		
 		return result;
 	}
+	//make sure you have the desired path in your system
 	public boolean save(MultipartFile file) {
 		boolean flag = false;
 		try {
-			Files.copy(file.getInputStream(), Paths.get(PATH + File.separator + file.getOriginalFilename()),
+			Files.copy(file.getInputStream(), Paths.get(PATH + File.separator +"tempFile.pdf"),
 					StandardCopyOption.REPLACE_EXISTING);
 			flag = true;
 		} catch (Exception e) {
